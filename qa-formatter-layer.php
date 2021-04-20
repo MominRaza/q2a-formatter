@@ -39,6 +39,7 @@ class qa_html_theme_layer extends qa_html_theme_base
     function body_suffix()
     {
         qa_html_theme_base::body_suffix();
+        if($this->template == 'question' || $this->template == 'ask')
         {
             if (qa_opt("qa-mathjax-enable") && qa_opt('qa-mathjax-config') && qa_opt('qa-mathjax-url')) {
                 $this->output('<script  type="text/x-mathjax-config">' . qa_opt('qa-mathjax-config') . '</script>');
@@ -53,15 +54,23 @@ class qa_html_theme_layer extends qa_html_theme_base
     function head_custom()
     {
         qa_html_theme_base::head_custom();
-        if (qa_opt("qa-prettify-enable")) {
-            $this->output('<link rel="stylesheet" href="' . qa_opt('qa-formatter-css') . '">');
-            $this->output('<script type="text/javascript" src="' . qa_opt('qa-prettify-url') . '"></script>');
-            $this->output('<script>hljs.initHighlightingOnLoad();</script>');
-        }
-        if (qa_opt("qa-ckepreview-enable")) {
-            $this->output('<style type="text/css">
-#qa-cke-prev{border-top:2px dashed #def; border-bottom:2px dashed #def; padding-top:10px; margin-top:10px; }
+        if($this->template == 'question' || $this->template == 'ask')
+        {
+            if (qa_opt("qa-prettify-enable")) {
+                $this->output('<link rel="stylesheet" href="' . qa_opt('qa-formatter-css') . '">');
+                $this->output('<script type="text/javascript" src="' . qa_opt('qa-prettify-url') . '"></script>');
+                $this->output('<script>hljs.initHighlightingOnLoad();</script>');
+            }
+            if (qa_opt("qa-ckepreview-enable")) {
+                $this->output('<style type="text/css">
+#qa-cke-prev {
+    border-top: 2px dashed #def;
+    border-bottom: 2px dashed #def;
+    padding-top: 10px;
+    margin-top: 10px;
+}
 </style>');
+            }
         }
     }
 }

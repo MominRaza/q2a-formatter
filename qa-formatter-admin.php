@@ -39,7 +39,7 @@ MathJax.Hub.Config({
             case 'qa-mathjax-enable':
                 return '1';
             case 'qa-prettify-enable':
-                return '1';
+                return '0';
             case 'qa-ckepreview-enable':
                 return '1';
             default:
